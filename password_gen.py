@@ -8,7 +8,6 @@
 import random
 import string
 import sys
-import time
 import argparse
 
 
