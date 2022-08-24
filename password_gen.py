@@ -14,12 +14,22 @@ import argparse
 prefixes = [""]
 for line in open("pre.txt"):
     prefixes.append(line.strip())
+    prefixes.append(line.strip().capitalize())
+    prefixes.append(line.strip().upper())
+    prefixes.append(line.strip().lower())
+    prefixes.append(line.strip().title())
+    prefixes.append(line.strip().swapcase())
 
 
 user_input_list = []
 suffixes = [""]
 for line in open("suff.txt"):
     suffixes.append(line.strip())
+    suffixes.append(line.strip().capitalize())
+    suffixes.append(line.strip().upper())
+    suffixes.append(line.strip().lower())
+    suffixes.append(line.strip().title())
+    suffixes.append(line.strip().swapcase())
 
 
 def clear_text_file(directory="output.txt"):
@@ -76,7 +86,7 @@ def random_prefix_from_list(prefixes):
     return random.choice(prefixes)
 
 
-def random_common_word():
+def random_common_words():
     """
     The random_common_word function returns a random word from the user input list.
 
@@ -84,7 +94,8 @@ def random_common_word():
     :return: A random word from the user input list
 
     """
-    return random.choice(user_input_list)
+    add_to_return = random.choice(["", random.choice(user_input_list), "", random.choice(user_input_list), ])
+    return str(random.choice((user_input_list))+str(add_to_return))
 
 
 # ask user for input
@@ -105,6 +116,12 @@ def user_input():
     while user_input_list_new != "":
         user_input_list_new = input("Enter a common word, if finished, press RETURN: ")
         user_input_list.append(user_input_list_new)
+        user_input_list.append(user_input_list_new.capitalize())
+        user_input_list.append(user_input_list_new.upper())
+        user_input_list.append(user_input_list_new.lower())
+        user_input_list.append(user_input_list_new.title())
+        user_input_list.append(user_input_list_new.swapcase())
+        
     return user_input_list
 
 
@@ -121,7 +138,7 @@ def generate(length: int):
     for _ in range(0, length):
         writer(
             random_prefix_from_list(prefixes)
-            + str(random_common_word())
+            + str(random_common_words())
             + random_suffix_from_list(suffixes),
             args.path,
         )
@@ -139,9 +156,11 @@ def main(length: int):
     """
     clear_text_file(args.path)
 
-    animation = "|/-\\"
+    
 
     generate(length)
+    
+    
 
     print("Done generating " + str(length) + " lines")
 
