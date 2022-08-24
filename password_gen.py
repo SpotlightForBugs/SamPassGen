@@ -25,14 +25,14 @@ for line in open("suff.txt"):
 def clear_text_file(directory="output.txt"):
     """
     The clear_text_file function clears the contents of a text file.
-    
-    Parameters: 
-    directory (str): The name of the directory to be cleared. Defaults to &quot;output.txt&quot;. 
-    
-    
+
+    Parameters:
+    directory (str): The name of the directory to be cleared. Defaults to &quot;output.txt&quot;.
+
+
     :param directory=&quot;output.txt&quot;: Specify the name of the file that will be created
     :return: The string &quot;&quot;
-   
+
     """
     with open(directory, "w", encoding="UTF8") as f:
         f.write("")
@@ -42,11 +42,11 @@ def writer(string, directory="output.txt"):
     """
     The writer function writes a string to the specified file.
     The default directory is output.txt.
-    
+
     :param string: Write the string to the file
     :param directory=&quot;output.txt&quot;: Specify the directory of the file that is being written to
     :return: None
-   
+
     """
     with open(directory, "a", encoding="UTF8") as f:
         f.write(string + "\n")
@@ -55,11 +55,11 @@ def writer(string, directory="output.txt"):
 def random_suffix_from_list(suffixes):
     """
     The random_suffix_from_list function takes a list of strings as input and returns one of the strings at random.
-    
-    
+
+
     :param suffixes: Pass a list of suffixes to the function
     :return: A random suffix from a list of suffixes
-   
+
     """
     return random.choice(suffixes)
 
@@ -67,11 +67,11 @@ def random_suffix_from_list(suffixes):
 def random_prefix_from_list(prefixes):
     """
     The random_prefix_from_list function takes a list of prefixes as an argument and returns a random prefix from the list.
-    
-    
+
+
     :param prefixes: Pass a list of prefixes to the function
     :return: A random prefix from the list of prefixes
-   
+
     """
     return random.choice(prefixes)
 
@@ -79,10 +79,10 @@ def random_prefix_from_list(prefixes):
 def random_common_word():
     """
     The random_common_word function returns a random word from the user input list.
-    
-    
+
+
     :return: A random word from the user input list
-   
+
     """
     return random.choice(user_input_list)
 
@@ -95,9 +95,9 @@ def user_input():
     The user_input function asks the user to input a list of words, and stores them in a list.
     The function will continue to ask the user for input until they press RETURN without entering any text.
     This is useful when you want to prompt the user for multiple pieces of information.
-    
+
     :return: A list of the user's input
-   
+
     """
     user_input_list_new = (input("Enter a common Word: "))
     user_input_list.append(user_input_list_new)
@@ -111,13 +111,13 @@ def user_input():
 
 def generate(length: int):
     """
-    The generate function generates a random number of words, between 1 and the length specified by the user. 
-    It then generates a random prefix from the list of prefixes, concatenates it with a common word from 
+    The generate function generates a random number of words, between 1 and the length specified by the user.
+    It then generates a random prefix from the list of prefixes, concatenates it with a common word from
     the list of common words, and finally appends one of three suffixes to that string.
-    
+
     :param length:int: Specify the number of random words to generate
     :return: True
-   
+
     """
     for _ in range(0, length):
         writer(random_prefix_from_list(prefixes) +
@@ -132,7 +132,7 @@ def main(length: int):
 
     :param length:int: Specify the number of lines to be generated
     :return: The string &quot;done generating &lt;length&gt; lines&quot;
-   
+
     """
     clear_text_file(args.path)
 
@@ -145,12 +145,12 @@ def main(length: int):
 
 def interactive_mode():
     """
-    The interactive_mode function is a function that allows the user to input their own text and have it be converted into a Markov Chain. 
-    The user will first be asked for how many lines they would like to generate, then they will be prompted for what type of text file they want to use. 
+    The interactive_mode function is a function that allows the user to input their own text and have it be converted into a Markov Chain.
+    The user will first be asked for how many lines they would like to generate, then they will be prompted for what type of text file they want to use.
     If the user inputs &quot;none&quot;, then the program will default back to using an English corpus from NLTK's library.
-    
+
     :return: The user_input function and the length variable
-   
+
     """
     user_input()
     length = int(input("How many lines do you want to generate? "))
