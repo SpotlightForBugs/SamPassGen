@@ -7,6 +7,7 @@
 
 import random
 import string
+import sys
 import time
 import argparse
 
@@ -171,7 +172,7 @@ if __name__ == "__main__":
 
     if (not args.interactive and not args.length and not args.common_words):
         print("Please specify -i for interactive mode or -l for length and -c for common words")
-        exit(0)
+        sys.exit(0)
 
     elif args.interactive and not args.length and not args.common_words:
 
