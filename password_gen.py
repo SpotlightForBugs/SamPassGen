@@ -94,8 +94,15 @@ def random_common_words():
     :return: A random word from the user input list
 
     """
-    add_to_return = random.choice(["", random.choice(user_input_list), "", random.choice(user_input_list), ])
-    return str(random.choice((user_input_list))+str(add_to_return))
+    add_to_return = random.choice(
+        [
+            "",
+            random.choice(user_input_list),
+            "",
+            random.choice(user_input_list),
+        ]
+    )
+    return str(random.choice((user_input_list)) + str(add_to_return))
 
 
 # ask user for input
@@ -121,7 +128,7 @@ def user_input():
         user_input_list.append(user_input_list_new.lower())
         user_input_list.append(user_input_list_new.title())
         user_input_list.append(user_input_list_new.swapcase())
-        
+
     return user_input_list
 
 
@@ -156,11 +163,7 @@ def main(length: int):
     """
     clear_text_file(args.path)
 
-    
-
     generate(length)
-    
-    
 
     print("Done generating " + str(length) + " lines")
 
