@@ -61,13 +61,13 @@ def user_input():
 def generate(length: int):
     for _ in range(0, length):
         writer(random_prefix_from_list(prefixes) +
-               str(random_common_word()) + random_suffix_from_list(suffixes))
+               str(random_common_word()) + random_suffix_from_list(suffixes),args.path)
     return True
 
 
 def main(length: int):
 
-    clear_text_file()
+    clear_text_file(args.path)
 
     animation = "|/-\\"
 
@@ -88,9 +88,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate a random password")
     parser.add_argument("-l", "--length", type=int, help="lines to generate")
     parser.add_argument("-i", "--interactive", action="store_true",
-                        help="Interactive mode", default=True)
+                        help="Interactive mode", default=True,dest="interactive")
     parser.add_argument("-c", "--common_words", type=str,
                         help="common words, delimited by :", action="store")
+    parser.add_argument("-p", "--path", type=str,help="path to output file, defaults to output.txt", action="store",dest="path",default="output.txt")
     args = parser.parse_args()
 
     if (not args.interactive and not args.length and not args.common_words):
