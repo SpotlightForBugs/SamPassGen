@@ -134,7 +134,6 @@ def main(length: int):
     :return: The string &quot;done generating &lt;length&gt; lines&quot;
    
     """
-
     clear_text_file(args.path)
 
     animation = "|/-\\"
