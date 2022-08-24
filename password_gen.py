@@ -99,12 +99,11 @@ def user_input():
     :return: A list of the user's input
 
     """
-    user_input_list_new = (input("Enter a common Word: "))
+    user_input_list_new = input("Enter a common Word: ")
     user_input_list.append(user_input_list_new)
     # ask user for input, until user enters an empty string
     while user_input_list_new != "":
-        user_input_list_new = (
-            input("Enter a common word, if finished, press RETURN: "))
+        user_input_list_new = input("Enter a common word, if finished, press RETURN: ")
         user_input_list.append(user_input_list_new)
     return user_input_list
 
@@ -120,8 +119,12 @@ def generate(length: int):
 
     """
     for _ in range(0, length):
-        writer(random_prefix_from_list(prefixes) +
-               str(random_common_word()) + random_suffix_from_list(suffixes),args.path)
+        writer(
+            random_prefix_from_list(prefixes)
+            + str(random_common_word())
+            + random_suffix_from_list(suffixes),
+            args.path,
+        )
     return True
 
 
@@ -162,15 +165,36 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate a random password")
     parser.add_argument("-l", "--length", type=int, help="lines to generate")
-    parser.add_argument("-i", "--interactive", action="store_true",
-                        help="Interactive mode", default=True,dest="interactive")
-    parser.add_argument("-c", "--common_words", type=str,
-                        help="common words, delimited by :", action="store")
-    parser.add_argument("-p", "--path", type=str,help="path to output file, defaults to output.txt", action="store",dest="path",default="output.txt")
+    parser.add_argument(
+        "-i",
+        "--interactive",
+        action="store_true",
+        help="Interactive mode",
+        default=True,
+        dest="interactive",
+    )
+    parser.add_argument(
+        "-c",
+        "--common_words",
+        type=str,
+        help="common words, delimited by :",
+        action="store",
+    )
+    parser.add_argument(
+        "-p",
+        "--path",
+        type=str,
+        help="path to output file, defaults to output.txt",
+        action="store",
+        dest="path",
+        default="output.txt",
+    )
     args = parser.parse_args()
 
-    if (not args.interactive and not args.length and not args.common_words):
-        print("Please specify -i for interactive mode or -l for length and -c for common words")
+    if not args.interactive and not args.length and not args.common_words:
+        print(
+            "Please specify -i for interactive mode or -l for length and -c for common words"
+        )
         sys.exit(0)
 
     elif args.interactive and not args.length and not args.common_words:
