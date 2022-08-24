@@ -1,2 +1,2 @@
 # SamPassGen
- generates Passwords based on common Patterns
+ - generates Passwords based Prefix, Your input, Suffix
