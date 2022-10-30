@@ -13,23 +13,30 @@ import argparse
 
 prefixes = [""]
 for line in open("pre.txt"):
-    prefixes.append(line.strip())
-    prefixes.append(line.strip().capitalize())
-    prefixes.append(line.strip().upper())
-    prefixes.append(line.strip().lower())
-    prefixes.append(line.strip().title())
-    prefixes.append(line.strip().swapcase())
-
+    prefixes.extend(
+        (
+            line.strip(),
+            line.strip().capitalize(),
+            line.strip().upper(),
+            line.strip().lower(),
+            line.strip().title(),
+            line.strip().swapcase(),
+        )
+    )
 
 user_input_list = []
 suffixes = [""]
 for line in open("suff.txt"):
-    suffixes.append(line.strip())
-    suffixes.append(line.strip().capitalize())
-    suffixes.append(line.strip().upper())
-    suffixes.append(line.strip().lower())
-    suffixes.append(line.strip().title())
-    suffixes.append(line.strip().swapcase())
+    suffixes.extend(
+        (
+            line.strip(),
+            line.strip().capitalize(),
+            line.strip().upper(),
+            line.strip().lower(),
+            line.strip().title(),
+            line.strip().swapcase(),
+        )
+    )
 
 
 def clear_text_file(directory="output.txt"):
@@ -142,7 +149,7 @@ def generate(length: int):
     :return: True
 
     """
-    for _ in range(0, length):
+    for _ in range(length):
         writer(
             random_prefix_from_list(prefixes)
             + str(random_common_words())
@@ -165,7 +172,7 @@ def main(length: int):
 
     generate(length)
 
-    print("Done generating " + str(length) + " lines")
+    print(f"Done generating {length} lines")
 
 
 def interactive_mode():
